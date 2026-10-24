@@ -2,249 +2,81 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Castlehelm</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Castlehelm</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      background: #100e12;
-      color: #e8dfd3;
-      font-family: Georgia, serif;
-      line-height: 1.7;
-    }
+body {
+  min-height: 100vh;
+  background: #100d0e;
+  color: #d8c29a;
+  font-family: Georgia, serif;
+}
 
-    header {
-      min-height: 320px;
-      padding: 75px 20px;
-      text-align: center;
-      background:
-        linear-gradient(#100e12aa, #100e12),
-        url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1400&q=80")
-        center/cover;
-    }
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 25px;
+  background:
+    linear-gradient(to bottom, #100d0e66, #100d0ef2),
+    url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1400&q=80")
+    center / cover no-repeat;
+}
 
-    header h1 {
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      letter-spacing: 8px;
-      color: #d6b77a;
-    }
+.ornament {
+  font-size: 20px;
+  letter-spacing: 12px;
+  color: #94764b;
+  margin-bottom: 25px;
+}
 
-    header p {
-      letter-spacing: 3px;
-      color: #c7b9aa;
-    }
+h1 {
+  font-size: clamp(2.5rem, 10vw, 6rem);
+  letter-spacing: 8px;
+  font-weight: normal;
+}
 
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 22px;
-      padding: 18px;
-      border-block: 1px solid #594633;
-      background: #171319;
-    }
+.line {
+  width: 100px;
+  height: 1px;
+  background: #94764b;
+  margin: 30px 0;
+}
 
-    nav a {
-      color: #d6b77a;
-      text-decoration: none;
-    }
+p {
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: #c1b5a5;
+}
 
-    nav a:hover {
-      color: white;
-    }
-
-    main {
-      max-width: 950px;
-      margin: auto;
-      padding: 35px 20px;
-    }
-
-    section {
-      margin: 25px 0;
-      padding: 25px;
-      background: #1b171d;
-      border: 1px solid #493a31;
-      border-radius: 4px;
-    }
-
-    h2 {
-      color: #d6b77a;
-      margin-bottom: 15px;
-    }
-
-    .hierarchy {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 12px;
-    }
-
-    .rank {
-      padding: 15px;
-      text-align: center;
-      background: #282029;
-      border: 1px solid #594633;
-    }
-
-    form {
-      display: grid;
-      gap: 12px;
-    }
-
-    input, select, textarea, button {
-      width: 100%;
-      padding: 12px;
-      font: inherit;
-      border: 1px solid #594633;
-      border-radius: 3px;
-    }
-
-    input, select, textarea {
-      background: #100e12;
-      color: #eee4d8;
-    }
-
-    button {
-      background: #735637;
-      color: white;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #927044;
-    }
-
-    footer {
-      padding: 25px;
-      text-align: center;
-      color: #a89a8d;
-      border-top: 1px solid #493a31;
-    }
-  </style>
+footer {
+  position: absolute;
+  bottom: 22px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #877765;
+}
+</style>
 </head>
 
 <body>
-  <header>
+  <main class="hero">
+    <div class="ornament">✦ ❦ ✦</div>
     <h1>CASTLEHELM</h1>
-    <p>UN REINO. MIL SECRETOS.</p>
-  </header>
-
-  <nav>
-    <a href="#reino">El reino</a>
-    <a href="#jerarquia">Jerarquía</a>
-    <a href="#onrol">ON ROL</a>
-    <a href="#offrol">OFF ROL</a>
-    <a href="#emperatriz">Emperatriz</a>
-  </nav>
-
-  <main>
-    <section id="reino">
-      <h2>✦ Bienvenidos a Castlehelm ✦</h2>
-      <p>
-        Tras los muros de un antiguo castillo, las alianzas
-        se forjan en silencio y las traiciones cambian el destino
-        de la corona. Aquí, cada decisión tiene consecuencias.
-      </p>
-    </section>
-
-    <section id="jerarquia">
-      <h2>♛ Jerarquía de la corte</h2>
-      <div class="hierarchy">
-        <div class="rank">👑 Emperatriz</div>
-        <div class="rank">♛ Familia real</div>
-        <div class="rank">⚔️ Nobleza</div>
-        <div class="rank">🛡️ Caballeros</div>
-        <div class="rank">🌿 Pueblo</div>
-      </div>
-    </section>
-
-    <section id="onrol">
-      <h2>✉ Registro ON ROL</h2>
-      <form id="onrolForm">
-        <input name="personaje" placeholder="Nombre del personaje" required>
-        <input name="edad" type="number" placeholder="Edad del personaje" min="1" required>
-        <select name="rango" required>
-          <option value="">Elige tu rango</option>
-          <option>Familia real</option>
-          <option>Nobleza</option>
-          <option>Caballero</option>
-          <option>Pueblo</option>
-        </select>
-        <textarea name="historia" placeholder="Historia del personaje" rows="4" required></textarea>
-        <button type="submit">Preparar registro</button>
-      </form>
-      <p id="onrolResult"></p>
-    </section>
-
-    <section id="offrol">
-      <h2>✉ Registro OFF ROL</h2>
-      <form id="offrolForm">
-        <input name="usuario" placeholder="Nombre o apodo" required>
-        <input name="edad" type="number" placeholder="Edad (opcional)" min="1">
-        <textarea name="presentacion" placeholder="Preséntate ante la corte" rows="3" required></textarea>
-        <button type="submit">Preparar registro</button>
-      </form>
-      <p id="offrolResult"></p>
-    </section>
-
-    <section id="emperatriz">
-      <h2>👑 Panel de la Emperatriz</h2>
-      <p>
-        La corona observa. Los secretos esperan.
-        El destino de Castlehelm está en tus manos.
-      </p>
-      <p><em>Panel ceremonial: aún no conectado a funciones privadas.</em></p>
-    </section>
+    <div class="line"></div>
+    <p>EVERY CROWN HIDES A SECRET</p>
+    <footer>EST. IN SHADOWS</footer>
   </main>
-
-  <footer>
-    <p>✦ CASTLEHELM · Donde las coronas esconden secretos ✦</p>
-  </footer>
-
-  <script>
-    function prepararRegistro(formId, resultId, titulo) {
-      document.getElementById(formId).addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const datos = new FormData(this);
-        let mensaje = titulo + "\n\n";
-
-        for (const [clave, valor] of datos.entries()) {
-          if (valor.trim() !== "") {
-            mensaje += clave + ": " + valor + "\n";
-          }
-        }
-
-        const salida = document.getElementById(resultId);
-        salida.textContent = "Registro preparado. Copia los datos:\n" + mensaje;
-        salida.style.whiteSpace = "pre-wrap";
-
-        const boton = document.createElement("button");
-        boton.type = "button";
-        boton.textContent = "Copiar registro";
-
-        boton.onclick = async () => {
-          try {
-            await navigator.clipboard.writeText(mensaje);
-            boton.textContent = "¡Copiado!";
-          } catch {
-            alert("Selecciona y copia el texto del registro.");
-          }
-        };
-
-        salida.appendChild(document.createElement("br"));
-        salida.appendChild(boton);
-      });
-    }
-
-    prepararRegistro("onrolForm", "onrolResult", "REGISTRO ON ROL");
-    prepararRegistro("offrolForm", "offrolResult", "REGISTRO OFF ROL");
-  </script>
 </body>
 </html>
