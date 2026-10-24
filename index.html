@@ -3,80 +3,781 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Castlehelm</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100b0e">
+<title>Castlehelm — Reino de las Sombras</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --bg: #100b0e;
+  --panel: #1a1116;
+  --wine: #571c2a;
+  --gold: #b79a63;
+  --cream: #e8dcc4;
+  --muted: #a99a91;
+  --border: #49313a;
 }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  min-height: 100vh;
-  background: #100d0e;
-  color: #d8c29a;
-  font-family: Georgia, serif;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.7;
 }
 
-.hero {
-  min-height: 100vh;
+a { color: inherit; text-decoration: none; }
+
+button, input, textarea, select { font: inherit; }
+
+button, .button {
+  cursor: pointer;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--cream);
+  padding: 11px 18px;
+  transition: .25s;
+}
+
+button:hover, .button:hover {
+  background: var(--wine);
+}
+
+.topline {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--wine), var(--gold), transparent);
+}
+
+header {
+  background: #100b0eeb;
+  border-bottom: 1px solid var(--border);
+  padding: 18px 6%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 17px;
+  white-space: nowrap;
+}
+
+nav {
+  display: flex;
+  gap: 17px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+nav a {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+nav a:hover { color: var(--gold); }
+
+.hero {
+  min-height: 88vh;
+  padding: 80px 22px;
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 25px;
   background:
-    linear-gradient(to bottom, #100d0e66, #100d0ef2),
-    url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1400&q=80")
-    center / cover no-repeat;
+    linear-gradient(#100b0e55, #100b0eeb),
+    url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1800&q=85")
+    center/cover no-repeat;
+  border-bottom: 1px solid var(--border);
 }
+
+.hero-inner { max-width: 850px; }
 
 .ornament {
-  font-size: 20px;
+  color: var(--gold);
   letter-spacing: 12px;
-  color: #94764b;
-  margin-bottom: 25px;
+  font-size: 20px;
+  margin-bottom: 24px;
 }
 
-h1 {
-  font-size: clamp(2.5rem, 10vw, 6rem);
-  letter-spacing: 8px;
+.hero h1 {
+  font-size: clamp(42px, 10vw, 100px);
+  letter-spacing: clamp(4px, 1.2vw, 13px);
+  line-height: 1.15;
   font-weight: normal;
+  text-shadow: 0 4px 25px #000;
 }
 
-.line {
+.subtitle {
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 11px;
+  margin-top: 22px;
+  text-transform: uppercase;
+}
+
+.goldline {
   width: 100px;
   height: 1px;
-  background: #94764b;
-  margin: 30px 0;
+  background: var(--gold);
+  margin: 28px auto;
 }
 
-p {
-  font-size: 12px;
-  letter-spacing: 5px;
-  color: #c1b5a5;
+.motto {
+  max-width: 690px;
+  margin: auto;
+  color: #e3d5c7;
+  font-size: clamp(15px, 2.4vw, 19px);
+  font-style: italic;
 }
 
-footer {
-  position: absolute;
-  bottom: 22px;
+.hero .button { display: inline-block; margin-top: 30px; }
+
+section {
+  padding: 85px 7%;
+  scroll-margin-top: 90px;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.kicker {
+  color: var(--gold);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 4px;
+}
+
+h2 {
+  font-size: clamp(27px, 5vw, 42px);
+  font-weight: normal;
+  margin: 8px 0;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.intro {
+  max-width: 750px;
+  margin: auto;
+  text-align: center;
+  color: #c8b9ae;
+}
+
+.dark-section {
+  background: #160e12;
+  border-top: 1px solid #291a20;
+  border-bottom: 1px solid #291a20;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.card {
+  background: linear-gradient(145deg, #21151b, #130d10);
+  border: 1px solid var(--border);
+  text-align: center;
+  padding: 16px 16px 25px;
+  transition: transform .25s, border-color .25s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+}
+
+.portrait {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  background: #2a1a20;
+  border: 1px solid #5c4145;
+  margin-bottom: 20px;
+}
+
+.portrait-placeholder {
+  aspect-ratio: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(ellipse, #46252f, #160e12 75%);
+  color: var(--gold);
+  border: 1px solid #5c4145;
+  margin-bottom: 20px;
+  font-size: 42px;
+}
+
+.portrait-placeholder small {
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-top: 12px;
+}
+
+.rank {
+  color: var(--gold);
+  text-transform: uppercase;
   font-size: 10px;
   letter-spacing: 3px;
-  color: #877765;
+}
+
+.card h3 {
+  font-size: 25px;
+  font-weight: normal;
+  margin: 6px 0;
+}
+
+.card p { color: var(--muted); font-size: 13px; }
+
+.small-note {
+  color: var(--muted);
+  text-align: center;
+  font-size: 12px;
+  margin: 25px auto 0;
+  max-width: 700px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 1050px;
+  margin: auto;
+}
+
+.feature {
+  padding: 25px;
+  border: 1px solid var(--border);
+  background: #160f13;
+}
+
+.feature .symbol { color: var(--gold); font-size: 25px; }
+
+.feature h3 {
+  color: var(--cream);
+  font-size: 19px;
+  font-weight: normal;
+  margin: 8px 0;
+}
+
+.feature p { color: var(--muted); font-size: 13px; }
+
+.map-frame {
+  min-height: 260px;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse at 50% 40%, #39202a, transparent 65%),
+    repeating-linear-gradient(45deg, #171015, #171015 12px, #1b1218 12px, #1b1218 24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  max-width: 950px;
+  margin: auto;
+}
+
+.map-frame p { color: var(--muted); max-width: 500px; }
+
+.form-panel {
+  max-width: 680px;
+  margin: auto;
+  padding: 28px;
+  background: #1a1116;
+  border: 1px solid var(--border);
+}
+
+label {
+  display: block;
+  color: var(--gold);
+  font-size: 12px;
+  margin: 14px 0 5px;
+}
+
+input, textarea, select {
+  width: 100%;
+  background: #100b0e;
+  color: var(--cream);
+  border: 1px solid #49313a;
+  padding: 12px;
+  outline: none;
+}
+
+input:focus, textarea:focus, select:focus { border-color: var(--gold); }
+
+textarea { min-height: 110px; resize: vertical; }
+
+.form-panel button { margin-top: 17px; }
+
+.entry {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+
+.entry h3 { color: var(--gold); font-size: 17px; font-weight: normal; }
+.entry p { color: #c8b9ae; white-space: pre-wrap; }
+
+.law-list {
+  max-width: 750px;
+  margin: auto;
+  list-style: none;
+  counter-reset: law;
+}
+
+.law-list li {
+  counter-increment: law;
+  padding: 20px 10px 20px 58px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  color: #d4c5b8;
+}
+
+.law-list li::before {
+  content: "0" counter(law);
+  position: absolute;
+  left: 8px;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+.court-panel {
+  max-width: 720px;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid var(--gold);
+  background:
+    linear-gradient(#21151be8, #140e12f5),
+    repeating-linear-gradient(0deg, transparent, transparent 30px, #b79a6310 31px);
+  text-align: center;
+}
+
+.court-panel p { color: var(--muted); margin: 12px 0 22px; }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 35px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+footer .brand { margin-bottom: 8px; }
+
+@media (max-width: 760px) {
+  header { align-items: flex-start; flex-direction: column; }
+  nav { justify-content: flex-start; gap: 12px; }
+  nav a { font-size: 11px; }
+  .cards { grid-template-columns: 1fr; max-width: 380px; }
+  .feature-grid { grid-template-columns: 1fr; }
+  section { padding: 65px 6%; }
+  .hero { min-height: 78vh; }
+  .form-panel { padding: 20px; }
 }
 </style>
 </head>
 
 <body>
-  <main class="hero">
-    <div class="ornament">✦ ❦ ✦</div>
-    <h1>CASTLEHELM</h1>
-    <div class="line"></div>
-    <p>EVERY CROWN HIDES A SECRET</p>
-    <footer>EST. IN SHADOWS</footer>
-  </main>
+<div class="topline"></div>
+
+<header>
+  <a class="brand" href="#inicio">✦ CASTLEHELM</a>
+  <nav aria-label="Navegación principal">
+    <a href="#cronicas">Crónicas</a>
+    <a href="#corte">La Corte</a>
+    <a href="#mapa">Territorios</a>
+    <a href="#gremios">Gremios</a>
+    <a href="#eventos">Eventos</a>
+    <a href="#leyes">Decretos</a>
+    <a href="#libro">Libro de visitas</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="hero-inner">
+      <div class="ornament">✦ ❦ ✦</div>
+      <h1>CASTLEHELM</h1>
+      <p class="subtitle">Un reino escrito entre sombras</p>
+      <div class="goldline"></div>
+      <p class="motto">
+        Incluso en el rincón más oscuro, donde las sombras reinan
+        y los secretos duermen, toda alma guarda una historia.
+        ¿Te atreves a contar la tuya?
+      </p>
+      <a class="button" href="#cronicas">Entrar al reino</a>
+    </div>
+  </section>
+
+  <section id="cronicas">
+    <div class="section-heading">
+      <span class="kicker">Archivo real</span>
+      <h2>Crónicas de Castlehelm</h2>
+      <p>Toda historia deja una huella en los muros del reino.</p>
+    </div>
+    <p class="intro">
+      Castlehelm es un lugar para crear personajes, construir historias,
+      formar alianzas y escribir nuevas leyendas. Cada visitante llega
+      con un pasado; solo el tiempo revelará su destino.
+    </p>
+  </section>
+
+  <section class="dark-section" id="corte">
+    <div class="section-heading">
+      <span class="kicker">La sangre de la corona</span>
+      <h2>La Corte Real</h2>
+      <p>Tres figuras. Un solo reino. Infinitos secretos.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card">
+        <!-- Reemplaza este bloque con la foto de la Emperatriz -->
+        <div class="portrait-placeholder">♛<small>FOTO PENDIENTE</small></div>
+        <span class="rank">Emperatriz · Owner</span>
+        <h3>La Emperatriz</h3>
+        <p>La soberana que custodia los secretos de Castlehelm.</p>
+      </article>
+
+      <article class="card">
+        <!-- Reemplaza este bloque con la foto del Rey -->
+        <div class="portrait-placeholder">♔<small>FOTO PENDIENTE</small></div>
+        <span class="rank">Rey · Co-Owner</span>
+        <h3>El Rey</h3>
+        <p>La mano derecha de la corona y guardián del orden.</p>
+      </article>
+
+      <article class="card">
+        <!-- Reemplaza este bloque con la foto del Príncipe -->
+        <div class="portrait-placeholder">♜<small>FOTO PENDIENTE</small></div>
+        <span class="rank">Príncipe · Admin</span>
+        <h3>El Príncipe</h3>
+        <p>El heredero de nuevas historias y protector del reino.</p>
+      </article>
+    </div>
+    <p class="small-note">
+      Las fotografías originales se añadirán aquí cuando estén disponibles.
+      El orden de la corte ya está preparado.
+    </p>
+  </section>
+
+  <section id="personajes">
+    <div class="section-heading">
+      <span class="kicker">El archivo</span>
+      <h2>Personajes del Reino</h2>
+      <p>Un registro de las almas que habitan estas tierras.</p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="symbol">♙</div>
+        <h3>Registro de personajes</h3>
+        <p>Identidades, historias, alianzas y datos de cada personaje.</p>
+      </article>
+      <article class="feature">
+        <div class="symbol">✧</div>
+        <h3>Archivo de leyendas</h3>
+        <p>Un lugar para conservar historias y acontecimientos importantes.</p>
+      </article>
+      <article class="feature">
+        <div class="symbol">♜</div>
+        <h3>Rangos y títulos</h3>
+        <p>La jerarquía del reino, sus cargos y sus responsabilidades.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="dark-section" id="mapa">
+    <div class="section-heading">
+      <span class="kicker">Cartografía antigua</span>
+      <h2>Territorios del Reino</h2>
+      <p>Más allá de las murallas, aguardan tierras desconocidas.</p>
+    </div>
+    <div class="map-frame">
+      <div>
+        <div class="ornament">✧ ♜ ✧</div>
+        <h3>El mapa de Castlehelm</h3>
+        <p>
+          Este espacio está reservado para el mapa interactivo:
+          castillo, bosques, aldeas, territorios y lugares secretos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gremios">
+    <div class="section-heading">
+      <span class="kicker">Alianzas y juramentos</span>
+      <h2>Gremios</h2>
+      <p>Ninguna leyenda se construye en soledad.</p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="symbol">⚜</div>
+        <h3>Orden de la Rosa</h3>
+        <p>Un espacio reservado para describir este gremio y sus miembros.</p>
+      </article>
+      <article class="feature">
+        <div class="symbol">☾</div>
+        <h3>Círculo Nocturno</h3>
+        <p>Un espacio para sus alianzas, objetivos e historias.</p>
+      </article>
+      <article class="feature">
+        <div class="symbol">✦</div>
+        <h3>Nuevo gremio</h3>
+        <p>Las futuras órdenes podrán tener su propia identidad y registro.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="dark-section" id="eventos">
+    <div class="section-heading">
+      <span class="kicker">El calendario real</span>
+      <h2>Eventos y Anuncios</h2>
+      <p>Los acontecimientos que cambiarán el curso de la historia.</p>
+    </div>
+    <div class="intro">
+      <p>Los anuncios oficiales y las fechas importantes se publicarán aquí.</p>
+      <p style="margin-top:14px;color:var(--gold)">
+        ✦ Próximamente: ceremonias, reuniones y eventos narrativos.
+      </p>
+    </div>
+  </section>
+
+  <section id="leyes">
+    <div class="section-heading">
+      <span class="kicker">Edictos de la corona</span>
+      <h2>Leyes del Reino</h2>
+      <p>Los pactos que mantienen unido a Castlehelm.</p>
+    </div>
+    <ol class="law-list">
+      <li>Trata a los demás miembros con respeto dentro y fuera del rol.</li>
+      <li>Respeta los límites personales y las decisiones de cada participante.</li>
+      <li>No compartas información privada de otros miembros.</li>
+      <li>Respeta las decisiones administrativas y utiliza los canales establecidos para resolver desacuerdos.</li>
+      <li>Cuida la coherencia de las historias y avisa cuando un contenido necesite límites o contexto.</li>
+    </ol>
+  </section>
+
+  <section class="dark-section" id="solicitudes">
+    <div class="section-heading">
+      <span class="kicker">Correspondencia real</span>
+      <h2>Solicitudes de Ingreso</h2>
+      <p>Quienes deseen cruzar las puertas del castillo deberán presentarse.</p>
+    </div>
+
+    <form class="form-panel" id="requestForm">
+      <label for="requestName">Nombre o alias</label>
+      <input id="requestName" name="name" maxlength="60" required>
+
+      <label for="requestCharacter">Nombre del personaje</label>
+      <input id="requestCharacter" name="character" maxlength="60" required>
+
+      <label for="requestType">Tipo de solicitud</label>
+      <select id="requestType" name="type">
+        <option>Ingreso al reino</option>
+        <option>Ingreso a un gremio</option>
+        <option>Consulta</option>
+      </select>
+
+      <label for="requestMessage">Presentación</label>
+      <textarea id="requestMessage" name="message" maxlength="1000" required></textarea>
+
+      <button type="submit">Preparar solicitud</button>
+      <p id="requestStatus" class="small-note" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section id="libro">
+    <div class="section-heading">
+      <span class="kicker">Voces del reino</span>
+      <h2>Libro de Visitas</h2>
+      <p>Deja unas palabras para quienes lleguen después.</p>
+    </div>
+
+    <form class="form-panel" id="guestForm">
+      <label for="guestName">Firma o alias</label>
+      <input id="guestName" maxlength="60" required>
+
+      <label for="guestMessage">Tu mensaje</label>
+      <textarea id="guestMessage" maxlength="500" required></textarea>
+
+      <button type="submit">Dejar constancia</button>
+      <p class="small-note">
+        Los mensajes se guardan únicamente en este navegador.
+        No son públicos ni se sincronizan entre visitantes.
+      </p>
+    </form>
+
+    <div id="guestEntries" class="form-panel" style="margin-top:24px">
+      <p style="color:var(--muted)">Aún no hay mensajes en este navegador.</p>
+    </div>
+  </section>
+
+  <section class="dark-section" id="salon">
+    <div class="section-heading">
+      <span class="kicker">Correspondencia confidencial</span>
+      <h2>Salón de la Corte</h2>
+      <p>Un espacio reservado para la administración de Castlehelm.</p>
+    </div>
+    <div class="court-panel">
+      <div class="ornament">♛ ✧ ♛</div>
+      <h3>Los Manuscritos de la Corona</h3>
+      <p>
+        Este salón está destinado a revisar solicitudes, registrar decisiones
+        y organizar notas privadas de la administración.
+      </p>
+      <p>
+        El acceso privado real todavía debe configurarse con autenticación
+        y almacenamiento seguro. Ocultar una sección con JavaScript no
+        protege su contenido.
+      </p>
+      <button type="button" id="courtInfo">Ver estado del salón</button>
+      <p id="courtStatus" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="brand">✦ CASTLEHELM ✦</div>
+  <p>Incluso las sombras guardan una historia.</p>
+  <p style="margin-top:10px">Un reino en construcción.</p>
+</footer>
+
+<script>
+const guestForm = document.getElementById("guestForm");
+const guestEntries = document.getElementById("guestEntries");
+
+function readGuestbook() {
+  try {
+    return JSON.parse(localStorage.getItem("castlehelm_guestbook") || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function renderGuestbook() {
+  const entries = readGuestbook();
+  guestEntries.replaceChildren();
+
+  if (!entries.length) {
+    const p = document.createElement("p");
+    p.textContent = "Aún no hay mensajes en este navegador.";
+    p.style.color = "var(--muted)";
+    guestEntries.appendChild(p);
+    return;
+  }
+
+  entries.slice().reverse().forEach(entry => {
+    const article = document.createElement("article");
+    article.className = "entry";
+
+    const heading = document.createElement("h3");
+    heading.textContent = entry.name;
+
+    const message = document.createElement("p");
+    message.textContent = entry.message;
+
+    const date = document.createElement("small");
+    date.style.color = "var(--muted)";
+    date.textContent = entry.date;
+
+    article.append(heading, message, date);
+    guestEntries.appendChild(article);
+  });
+}
+
+guestForm.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const name = document.getElementById("guestName").value.trim();
+  const message = document.getElementById("guestMessage").value.trim();
+
+  if (!name || !message) return;
+
+  try {
+    const entries = readGuestbook();
+    entries.push({
+      name,
+      message,
+      date: new Date().toLocaleDateString("es-MX")
+    });
+
+    localStorage.setItem("castlehelm_guestbook", JSON.stringify(entries));
+    guestForm.reset();
+    renderGuestbook();
+  } catch {
+    alert("No se pudo guardar el mensaje en este navegador.");
+  }
+});
+
+document.getElementById("requestForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const data = new FormData(form);
+
+  const request = [
+    "SOLICITUD DE CASTLEHELM",
+    "Alias: " + data.get("name"),
+    "Personaje: " + data.get("character"),
+    "Tipo: " + data.get("type"),
+    "Presentación: " + data.get("message")
+  ].join("\n");
+
+  const status = document.getElementById("requestStatus");
+  status.textContent =
+    "Solicitud preparada. Copia el texto que aparece a continuación y envíalo a la administración.";
+
+  const output = document.createElement("textarea");
+  output.readOnly = true;
+  output.rows = 7;
+  output.value = request;
+  output.setAttribute("aria-label", "Texto de la solicitud");
+  status.after(output);
+
+  const copyButton = document.createElement("button");
+  copyButton.type = "button";
+  copyButton.textContent = "Copiar solicitud";
+  copyButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(request);
+      copyButton.textContent = "Solicitud copiada";
+    } catch {
+      output.select();
+      status.textContent = "Selecciona el texto y cópialo manualmente.";
+    }
+  });
+  output.after(copyButton);
+});
+
+document.getElementById("courtInfo").addEventListener("click", () => {
+  document.getElementById("courtStatus").textContent =
+    "El diseño del salón está listo como maqueta. La autenticación, las notas privadas y la gestión de solicitudes aún no están conectadas.";
+});
+
+renderGuestbook();
+</script>
 </body>
 </html>
